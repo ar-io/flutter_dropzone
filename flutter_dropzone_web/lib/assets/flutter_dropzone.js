@@ -49,7 +49,14 @@ class FlutterDropzone {
           case "file":
             if (this.dropMIME == null || this.dropMIME.includes(item.type)) {
               var file = item.getAsFile();
-              if (this.onDrop != null) this.onDrop(event, file);
+              var fileEntry = item.webkitGetAsEntry();
+              var source = "unknown";
+              if (fileEntry.isFile) {
+                source = "file";
+              } else if (fileEntry.isDirectory) {
+                source = "folder";
+              }
+              if (this.onDrop != null) this.onDrop(event, file, source);
               files.push(file);
             }
             break;
@@ -57,7 +64,7 @@ class FlutterDropzone {
           case "string":
             const that = this;
             item.getAsString(function (text) {
-              if (that.onDrop != null) that.onDrop(event, text);
+              if (that.onDrop != null) that.onDrop(event, text, "string");
               strings.push(text);
             });
             break;
@@ -70,7 +77,7 @@ class FlutterDropzone {
     } else {
       for (var i = 0; i < ev.dataTransfer.files.length; i++)
         var file = event.dataTransfer.files[i];
-        if (this.onDrop != null) this.onDrop(event, file);
+        if (this.onDrop != null) this.onDrop(event, file, "files");
         files.push(file);
     }
 
