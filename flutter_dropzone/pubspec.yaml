@@ -13,13 +13,13 @@ dependencies:
 
   flutter_dropzone_platform_interface:
     git:
-      url: https://github.com/elliotsayes/flutter_dropzone
-      ref: folder-detect
+      url: https://github.com/ar-io/flutter_dropzone
+      ref: mastger
       path: flutter_dropzone_platform_interface
   flutter_dropzone_web:
     git:
-      url: https://github.com/elliotsayes/flutter_dropzone
-      ref: folder-detect
+      url: https://github.com/ar-io/flutter_dropzone
+      ref: master
       path: flutter_dropzone_web
 
 dev_dependencies:
